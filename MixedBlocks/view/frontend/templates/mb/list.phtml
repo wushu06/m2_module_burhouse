@@ -1,0 +1,24 @@
+<?php
+
+
+$mbs = $block->getMBs();
+?>
+
+<?php if ($mbs->getSize()): ?>
+    <div class="">
+        <?php foreach ($mbs as $mb): ?>
+            <div class="item">
+                <?= $mb->getText(); ?>
+                <?= $mb->getName(); ?>
+                <?php if ($mb->getUrl()): ?>
+                    <a href="<?= $mb->getUrl(); ?>" title="<?= $mb->getName(); ?>">
+                <?php endif; ?>
+                <img src="<?= $mb->getImageUrl(); ?>" alt="<?= $mb->getName(); ?>" width="100%"/>
+                <?php if ($mb->getUrl()): ?>
+                    </a>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+
+<?php endif; ?>

@@ -62,11 +62,13 @@ class Save extends \Magento\Backend\App\Action
      */
     public function execute()
     {
+
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         $data = $this->getRequest()->getPostValue();
 
         if ($data) {
+
             $id = $this->getRequest()->getParam('id');
 
             if (empty($data['id'])) {
@@ -76,7 +78,12 @@ class Save extends \Magento\Backend\App\Action
             $imageName = '';
             if (!empty($data['image'])) {
                 $imageName = $data['image'][0]['name'];
+                $data['image'] = $imageName;
+            }else{
+                $data['image'] = '';
             }
+
+
 
             /** @var \Tbb\MixedBlocks\Model\MB $model */
             $model = $this->_objectManager->create('Tbb\MixedBlocks\Model\MB')->load($id);
@@ -91,6 +98,7 @@ class Save extends \Magento\Backend\App\Action
                 $model->save();
                 if ($imageName) {
                     $this->imageUploader->moveFileFromTmp($imageName);
+
                 }
                 $this->messageManager->addSuccess(__('You saved the mb.'));
                 $this->dataPersistor->clear('mixed_blocks');
@@ -98,10 +106,12 @@ class Save extends \Magento\Backend\App\Action
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
                 }
+
                 return $resultRedirect->setPath('*/*/');
             } catch (LocalizedException $e) {
                 $this->messageManager->addError($e->getMessage());
             } catch (\Exception $e) {
+
                 $this->messageManager->addException($e, __('Something went wrong while saving the mb.'));
             }
 

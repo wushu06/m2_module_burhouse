@@ -116,15 +116,17 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     {
         $fileName = $mb->getImage();
         $image = [];
-        if ($this->getFileInfo()->isExist($fileName)) {
-            $stat = $this->getFileInfo()->getStat($fileName);
-            $mime = $this->getFileInfo()->getMimeType($fileName);
-            $image[0]['name'] = $fileName;
-            $image[0]['url'] = $mb->getImageUrl();
-            $image[0]['size'] = isset($stat) ? $stat['size'] : 0;
-            $image[0]['type'] = $mime;
+        if($mb->getImageUrl() !== '') {
+            if ($this->getFileInfo()->isExist($fileName)) {
+                $stat = $this->getFileInfo()->getStat($fileName);
+                $mime = $this->getFileInfo()->getMimeType($fileName);
+                $image[0]['name'] = $fileName;
+                $image[0]['url'] = $mb->getImageUrl();
+                $image[0]['size'] = isset($stat) ? $stat['size'] : 0;
+                $image[0]['type'] = $mime;
+            }
+            $mb->setImage($image);
         }
-        $mb->setImage($image);
 
         return $mb;
     }

@@ -41,11 +41,6 @@
                             selected="true">
                         <label translate="true">Homepage Template</label>
                     </option>
-                    <option name="brand"
-                            value="Tbb_MixedBlocks::mb/brand-list.phtml"
-                            selected="true">
-                        <label translate="true">Brand Template</label>
-                    </option>
                 </options>
             </parameter>
         </parameters>

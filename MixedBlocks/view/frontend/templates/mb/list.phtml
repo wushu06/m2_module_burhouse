@@ -2,23 +2,57 @@
 
 
 $mbs = $block->getMBs();
+
+
 ?>
 
+
+
 <?php if ($mbs->getSize()): ?>
-    <div class="">
+
+    <div class="block_mix">
         <?php foreach ($mbs as $mb): ?>
-            <div class="item">
-                <?= $mb->getText(); ?>
-                <?= $mb->getName(); ?>
-                <?php if ($mb->getUrl()): ?>
-                    <a href="<?= $mb->getUrl(); ?>" title="<?= $mb->getName(); ?>">
-                <?php endif; ?>
-                <img src="<?= $mb->getImageUrl(); ?>" alt="<?= $mb->getName(); ?>" width="100%"/>
-                <?php if ($mb->getUrl()): ?>
-                    </a>
-                <?php endif; ?>
+            <?php
+            $cat_id = (int)$mb->getCategory();
+            if($cat_id && $cat_id != 0):
+                $style = $mb->getStyle();
+                $name =  $block->getCategory($cat_id )->getName();
+                if($name):
+                    $img = $block->getCategory($cat_id )->getImageUrl();
+                    $desc = $block->getCategory($cat_id )->getData()['description'];
+                    $url = $block->getCategory($cat_id )->getUrl();
+                    ?>
+                    <div class="block_mix_content category_block <?php echo $style; ?>">
+                        <a href="<?php echo $url; ?>">
+                            <div class="block_mix__img">
+                                <img src="<?php echo $img; ?>" alt="" />
+                                <div class="block_mix__text"><p><?php echo $name; ?></p> <p><?php echo $desc; ?></p></div>
+                                <div class="block_mix__btn"><a href="<?= $url ?>">Shop now</a></div>
+                                <div class="block_mix__name"><p><?php echo $name; ?></p></div>
+                                <div class="block_mix__overlay"></div>
+                            </div>
+                        </a>
+                    </div>
+
+                <?php
+                endif;
+
+            else:
+
+            ?>
+            <div class="block_mix_content">
+                <div class="block_mix__img"><img src="<?= $mb->getImageUrl(); ?>"  />
+                    <div class="block_mix__text">
+                        <h3><?= $mb->getName(); ?></h3>
+                        <p> <?= $mb->getText(); ?></p>
+                    </div>
+                    <div class="block_mix__btn"><a href="<?= $mb->getUrl() ?>">Find out more</a></div>
+                    <div class="block_mix__overlay"></div>
+                </div>
             </div>
+        <?php endif; ?>
         <?php endforeach; ?>
     </div>
+
 
 <?php endif; ?>

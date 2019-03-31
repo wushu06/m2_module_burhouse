@@ -58,27 +58,29 @@ class MB extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
         $image = $object->getImage();
         $text = $object->getText();
         $order = $object->getOrder();
+        $category = $object->getCategory();
+        $style = $object->getStyle();
 
-        if (empty($name)) {
+        if (empty($name) && empty($category)) {
             throw new LocalizedException(__('The mb name is required.'));
         }
 
-        if (empty($text)) {
+        if (empty($text) && empty($category)) {
             throw new LocalizedException(__('The mb text is required.'));
         }
 
-        if (is_array($image)) {
+        if (is_array($image) && empty($category)) {
             $object->setImage($image[0]['name']);
         }
 
         // if the URL not null then check the URL
-        if (!empty($url) && !filter_var($url, FILTER_VALIDATE_URL)) {
+        if (!empty($url) && !filter_var($url, FILTER_VALIDATE_URL) && empty($category)) {
             throw new LocalizedException(__('The URL Link is invalid.'));
         }
 
 
 
-        if (!empty($order) && !is_numeric($order)) {
+        if (!empty($order) && !is_numeric($order) && empty($category)) {
             throw new LocalizedException(__('The Sort Order must be a numeric.'));
         }
 

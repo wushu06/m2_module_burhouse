@@ -15,7 +15,7 @@
  * version in the future.
  *
  * @category    Tbb
- * @package     Tbb_MixedBlocks
+ * @package     Tbb_BannerSlider
  * @copyright   Copyright (c) 2018-2019 GiaPhuGroup Co., Ltd. All rights reserved. (http://www.giaphugroup.com/)
  * @license     https://www.giaphugroup.com/LICENSE.txt
  */
@@ -23,24 +23,24 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
-            <item name="provider" xsi:type="string">tbb_mixed_blocks_mb_listing.tbb_mixed_blocks_mb_listing_data_source</item>
-            <item name="deps" xsi:type="string">tbb_mixed_blocks_mb_listing.tbb_mixed_blocks_mb_listing_data_source</item>
+            <item name="provider" xsi:type="string">tbb_banners_slider_banner_listing.tbb_banners_slider_banner_listing_data_source</item>
+            <item name="deps" xsi:type="string">tbb_banners_slider_banner_listing.tbb_banners_slider_banner_listing_data_source</item>
         </item>
-        <item name="spinner" xsi:type="string">mbs_mb_columns</item>
+        <item name="spinner" xsi:type="string">banners_slider_columns</item>
         <item name="buttons" xsi:type="array">
             <item name="add" xsi:type="array">
                 <item name="name" xsi:type="string">add</item>
-                <item name="label" xsi:type="string" translate="true">Add New MB</item>
+                <item name="label" xsi:type="string" translate="true">Add New Banner</item>
                 <item name="class" xsi:type="string">primary</item>
                 <item name="url" xsi:type="string">*/*/new</item>
             </item>
         </item>
-        <item name="acl" xsi:type="string">Tbb_MixedBlocks::all_mbs</item>
+        <item name="acl" xsi:type="string">Tbb_BannerSlider::all_banners</item>
     </argument>
-    <dataSource name="tbb_mixed_blocks_mb_listing_data_source">
+    <dataSource name="tbb_banners_slider_banner_listing_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
             <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
-            <argument name="name" xsi:type="string">tbb_mixed_blocks_mb_listing_data_source</argument>
+            <argument name="name" xsi:type="string">tbb_banners_slider_banner_listing_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">id</argument>
             <argument name="requestFieldName" xsi:type="string">id</argument>
             <argument name="data" xsi:type="array">
@@ -99,7 +99,7 @@
                     <item name="config" xsi:type="array">
                         <item name="type" xsi:type="string">delete</item>
                         <item name="label" xsi:type="string" translate="true">Delete</item>
-                        <item name="url" xsi:type="url" path="tbb_mixed_blocks/mb/massDelete"/>
+                        <item name="url" xsi:type="url" path="tbb_banners_slider/banner/massDelete"/>
                         <item name="confirm" xsi:type="array">
                             <item name="title" xsi:type="string" translate="true">Delete items</item>
                             <item name="message" xsi:type="string" translate="true">Are you sure you wan't to delete selected items?</item>
@@ -113,7 +113,7 @@
                         <item name="type" xsi:type="string">edit</item>
                         <item name="label" xsi:type="string" translate="true">Edit</item>
                         <item name="callback" xsi:type="array">
-                            <item name="provider" xsi:type="string">tbb_mixed_blocks_mb_listing.tbb_mixed_blocks_mb_listing.mbs_mb_columns_editor</item>
+                            <item name="provider" xsi:type="string">tbb_banners_slider_banner_listing.tbb_banners_slider_banner_listing.banners_slider_columns_editor</item>
                             <item name="target" xsi:type="string">editSelected</item>
                         </item>
                     </item>
@@ -122,21 +122,21 @@
         </massaction>
         <paging name="listing_paging"/>
     </listingToolbar>
-    <columns name="mbs_mb_columns">
+    <columns name="banners_slider_columns">
         <argument name="data" xsi:type="array">
             <item name="config" xsi:type="array">
                 <item name="editorConfig" xsi:type="array">
-                    <item name="selectProvider" xsi:type="string">tbb_mixed_blocks_mb_listing.tbb_mixed_blocks_mb_listing.mbs_mb_columns.ids</item>
+                    <item name="selectProvider" xsi:type="string">tbb_banners_slider_banner_listing.tbb_banners_slider_banner_listing.banners_slider_columns.ids</item>
                     <item name="enabled" xsi:type="boolean">true</item>
                     <item name="indexField" xsi:type="string">id</item>
                     <item name="clientConfig" xsi:type="array">
-                        <item name="saveUrl" xsi:type="url" path="tbb_mixed_blocks/mb/inlineEdit"/>
+                        <item name="saveUrl" xsi:type="url" path="tbb_banners_slider/banner/inlineEdit"/>
                         <item name="validateBeforeSave" xsi:type="boolean">false</item>
                     </item>
                 </item>
                 <item name="childDefaults" xsi:type="array">
                     <item name="fieldAction" xsi:type="array">
-                        <item name="provider" xsi:type="string">tbb_mixed_blocks_mb_listing.tbb_mixed_blocks_mb_listing.mbs_mb_columns_editor</item>
+                        <item name="provider" xsi:type="string">tbb_banners_slider_banner_listing.tbb_banners_slider_banner_listing.banners_slider_columns_editor</item>
                         <item name="target" xsi:type="string">startEdit</item>
                         <item name="params" xsi:type="array">
                             <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -162,7 +162,7 @@
                 </item>
             </argument>
         </column>
-        <column name="image" class="Tbb\MixedBlocks\Ui\Component\Listing\Column\Image">
+        <column name="image" class="Tbb\BannerSlider\Ui\Component\Listing\Column\Image">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
@@ -183,20 +183,6 @@
                     </item>
                     <item name="filter" xsi:type="string">text</item>
                     <item name="label" xsi:type="string" translate="true">Name</item>
-                </item>
-            </argument>
-        </column>
-        <column name="category">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="editor" xsi:type="array">
-                        <item name="editorType" xsi:type="string">text</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">true</item>
-                        </item>
-                    </item>
-                    <item name="filter" xsi:type="string">text</item>
-                    <item name="label" xsi:type="string" translate="true">Category ID</item>
                 </item>
             </argument>
         </column>
@@ -231,7 +217,7 @@
         </column>
         <column name="status">
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">Tbb\MixedBlocks\Model\MB\Source\Status</item>
+                <item name="options" xsi:type="object">Tbb\BannerSlider\Model\Banner\Source\Status</item>
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">select</item>
                     <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
@@ -250,7 +236,7 @@
                 </item>
             </argument>
         </column>
-        <column name="store_id" class="Tbb\MixedBlocks\Ui\Component\Listing\Column\Store">
+        <column name="store_id" class="Tbb\BannerSlider\Ui\Component\Listing\Column\Store">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
@@ -280,7 +266,7 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Tbb\MixedBlocks\Ui\Component\Listing\Column\MBActions">
+        <actionsColumn name="actions" class="Tbb\BannerSlider\Ui\Component\Listing\Column\BannerActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="indexField" xsi:type="string">id</item>

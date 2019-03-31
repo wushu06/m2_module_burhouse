@@ -30,6 +30,9 @@ class MixedBlocks extends Template implements BlockInterface
      * @var \Tbb\MixedBlocks\Model\MBFactory
      */
     protected $mbFactory;
+    protected $_registry;
+    protected  $productRepository;
+    protected $_categoryFactory;
 
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -39,8 +42,13 @@ class MixedBlocks extends Template implements BlockInterface
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Tbb\MixedBlocks\Model\MBFactory $mbFactory,
+        \Magento\Framework\Registry $registry,
+        \Magento\Catalog\Model\CategoryFactory $categoryFactory,
+        \Magento\Catalog\Api\ProductRepositoryInterface $productRepository,
         array $data = []
     ) {
+        $this->_categoryFactory = $categoryFactory;
+        $this->productRepository = $productRepository;
         $this->mbFactory = $mbFactory;
         parent::__construct($context, $data);
     }
@@ -58,4 +66,19 @@ class MixedBlocks extends Template implements BlockInterface
         )->setOrder('main_table.order', 'ASC');
         return $collection;
     }
+
+
+    public function loadMyProduct($sku)
+    {
+        return $this->productRepository->get($sku);
+    }
+
+    public function getCategory($categoryId)
+    {
+
+        $category = $this->_categoryFactory->create()->load($categoryId);
+
+        return  $category;
+    }
+
 }

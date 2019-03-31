@@ -65,6 +65,7 @@ class Image extends \Magento\Ui\Component\Listing\Columns\Column
      */
     public function prepareDataSource(array $dataSource)
     {
+
         if (isset($dataSource['data']['items'])) {
             $fieldName = $this->getData('name');
             foreach ($dataSource['data']['items'] as & $item) {
@@ -78,6 +79,7 @@ class Image extends \Magento\Ui\Component\Listing\Columns\Column
                 $item[$fieldName . '_alt'] = $mb['name'];
             }
         }
+
         return $dataSource;
     }
 }

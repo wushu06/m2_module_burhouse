@@ -63,7 +63,7 @@ class InstallSchema implements InstallSchemaInterface
             'text',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
-            ['nullable' => false, 'default' => '', 'LENGTH' =>255],
+            ['nullable' => true, 'default' => '', 'LENGTH' =>255],
             'MB Text'
         )->addColumn(
             'url',
@@ -75,14 +75,26 @@ class InstallSchema implements InstallSchemaInterface
             'image',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
-            ['nullable' => false],
+            ['nullable' => true],
             'MB Image'
+        )->addColumn(
+            'style',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            255,
+            ['nullable' => true],
+            'Style'
         )->addColumn(
             'status',
             \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
             null,
             ['nullable' => false, 'default' => '1'],
             'MB Status: Enabled is 1 and Disabled is 2'
+        )->addColumn(
+            'category',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            ['nullable' => false, 'default' => '0'],
+            'MB Category: Enabled is any number but 0'
         )->addColumn(
             'store_id',
             \Magento\Framework\DB\Ddl\Table::TYPE_SMALLINT,
